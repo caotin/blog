@@ -1,0 +1,104 @@
+
+      
+  <div>
+          
+              <button class="btn btn-primary" *ngIf="!showadd" (click)="showadd=true;">Thêm bài viết</button>
+              <div *ngIf="showadd">
+                <form ngForm="formPost">
+                  <table width="100%">
+                    <tr ><th width="15%"></th><th width="85%"></th></tr>
+                      <tr>
+                        <td>Tên bài viết:</td>
+                        <td>
+                          <input class="form-control" name="tenbaiviet" [(ngModel)]="tenbaiviet" required>
+                        </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              Chuyên mục:
+                          </td>
+                          <td>
+                            <select class="form-control" name="chuyenmuc" #chuyenmuc>
+                                  <option *ngFor="let cates of allCategory"  value="{{cates.cid}}" >{{cates.name}}</option> 
+                            </select>
+                          </td>
+                          
+                        </tr>
+                      <tr>
+                        <td>Hình ảnh:</td>
+                        <td>
+                           <input name="hinhanh" [(ngModel)]="hinhanh" class="form-control" required>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Mô tả:</td>
+                        <td>
+                            <textarea name="mota" [(ngModel)]="mota" class="form-control"  required></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Nội dung:</td>
+                        <td>
+                            <textarea name="noidung" [(ngModel)]="noidung" class="form-control"  required></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td><button *ngIf="tenbaiviet!=null&&noidung!=null&&mota!=null&&hinhanh!=null&&tenbaiviet!=''&&noidung!=''&&mota!=''&&hinhanh!=''" type="submit" class="btn btn-success"  (click)="create(tenbaiviet,
+                          hinhanh,
+                          mota,
+                          noidung,
+                          chuyenmuc.value,    
+                          'admin'
+                          );showadd=false;" >Add</button></td>
+                      </tr>
+                    </table>
+                    
+                  </form>
+                  
+                  </div>
+                  <br/>
+                  <br/>
+                  <input [(ngModel)]="txtSearch" (keypress)="search(txtSearch);"  type="text" placeholder="Tìm bài viết" class="form-control">
+             <br/>
+             <div *ngIf="statusCode; else processing" style="color:red;">
+               <div *ngIf="statusCode === 201" [ngClass] = "'success'">
+                  Post added successfully.
+               </div>   
+               <div *ngIf="statusCode === 409" [ngClass] = "'success'">
+                  Post already exists.
+               </div>   	
+               <div *ngIf="statusCode === 200" [ngClass] = "'success'">
+                  Post updated successfully.
+               </div>   	      
+               <div *ngIf="statusCode === 204" [ngClass] = "'success'">
+                  Post deleted successfully.
+               </div>   	   
+               <div *ngIf="statusCode === 500" [ngClass] = "'error'">
+                    Internal Server Error.
+               </div>	
+             </div>
+             <ng-template #processing>
+              <img *ngIf="requestProcessing" ng-src="assets/images/loading.gif">
+             </ng-template>
+            </div>
+            <h3>Danh sách bài viết</h3>
+            <table class="table table-striped">
+              <tr><th>ID</th><th>Tên bài viết</th><th>Ngày đăng</th><th>Mô tả</th><th width="20%"></th><th></th></tr>
+              <tr *ngFor="let post of allpost" >
+                <td>{{post.pid}}</td> 
+                <td>{{post.name}}</td> 
+                <td>  
+                  {{post.created_at}}
+                  
+                </td>
+                <td>{{post.name}}
+                    
+                    
+                </td>
+                <td>
+                  <button class="btn btn-success" type="button" (click)="showName=true;idshow=user.username">Edit</button> 
+                  <button class="btn btn-danger" type="button" (click)="delete(post.pid)">Delete</button>
+                </td>
+              </tr>
+            </table>

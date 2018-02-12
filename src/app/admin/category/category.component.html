@@ -1,0 +1,55 @@
+
+      
+  <div>
+          <table>
+            <tr>
+              <td>
+                Enter name category
+              </td>
+              <td>
+                <input class="form-control" [(ngModel)]="nameCategory">
+              </td>
+              <button class="btn btn-success" (click)="createCategory(nameCategory);" >Add</button>
+            </tr>
+          </table>
+         <br/>
+         <div *ngIf="statusCode; else processing" style="color:red;">
+           <div *ngIf="statusCode === 201" [ngClass] = "'success'">
+                Category added successfully.
+           </div>   
+           <div *ngIf="statusCode === 409" [ngClass] = "'success'">
+              Category already exists.
+           </div>   	
+           <div *ngIf="statusCode === 200" [ngClass] = "'success'">
+              Category updated successfully.
+           </div>   	      
+           <div *ngIf="statusCode === 204" [ngClass] = "'success'">
+              Category deleted successfully.
+           </div>   	   
+           <div *ngIf="statusCode === 500" [ngClass] = "'error'">
+                Internal Server Error.
+           </div>	
+         </div>
+         <ng-template #processing>
+            <img *ngIf="requestProcessing" ng-src="assets/images/loading.gif">
+         </ng-template>
+        
+        <h3>Category Details</h3>
+        <table class="table table-striped">
+          <tr><th> Id</th> <th>Name</th><th>Create at</th><th width="20%"></th></tr>
+          <tr *ngFor="let cate of allCategory" >
+            <td>{{cate.cid}}</td> 
+            <td>  
+              {{cate.name}}
+              <div *ngIf="showName&&idshow===cate.cid">
+                <input class="form-control" type="text" [value]="cate.name" #saveData>
+                <button class="btn btn-primary" (click)="saveCategory(idshow,saveData.value);showName=false;">Lưu</button>
+                <button class="btn btn-primary" (click)="showName=false;">Đóng</button>
+              </div>
+            </td> <td>{{cate.create_at}}</td>
+            <td><button class="btn btn-success" type="button" (click)="showName=true;idshow=cate.cid">Edit</button> 
+            <button class="btn btn-danger" type="button" (click)="deleteCategory(cate.cid)">Delete</button></td>
+          </tr>
+        </table>
+  </div>
+ 

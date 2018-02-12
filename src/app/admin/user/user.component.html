@@ -1,0 +1,81 @@
+
+<div>
+    <table>
+      <tr>
+        <td>Username:</td>
+        <td>
+          
+          <input class="form-control" [(ngModel)]="fusername">
+        </td>
+        <td>Password:</td>
+        <td>
+           <input class="form-control" [(ngModel)]="fpassword">
+        </td>
+        <td>
+            Role:
+        </td>
+        <td>
+           
+          <select class="form-control" #frole>
+            <option value="ADMIN" >Admin</option>
+            <option value="USER" selected>User</option>
+          </select>
+        </td>
+        <button *ngIf="fusername!=null && fusername!='' && fpassword!=null && fpassword!='' " class="btn btn-success" (click)="create(fusername,fpassword,frole.value);" >Add</button>
+      </tr>
+    </table>
+   <br/>
+   <div *ngIf="statusCode; else processing" style="color:red;">
+     <div *ngIf="statusCode === 201" [ngClass] = "'success'">
+        User added successfully.
+     </div>   
+     <div *ngIf="statusCode === 409" [ngClass] = "'success'">
+        User already exists.
+     </div>   	
+     <div *ngIf="statusCode === 200" [ngClass] = "'success'">
+        User updated successfully.
+     </div>   	      
+     <div *ngIf="statusCode === 204" [ngClass] = "'success'">
+        User deleted successfully.
+     </div>   	   
+     <div *ngIf="statusCode === 500" [ngClass] = "'error'">
+          Internal Server Error.
+     </div>	
+   </div>
+   <ng-template #processing>
+    <img *ngIf="requestProcessing" ng-src="assets/images/loading.gif">
+   </ng-template>
+  </div>
+  <h3>User Details</h3>
+  <table class="table table-striped">
+    <tr><th>Username</th> <th>Password</th><th>Role</th><th width="20%"></th></tr>
+    <tr *ngFor="let user of allUser" >
+      <td>{{user.username}}</td> 
+      <td>  
+        {{user.password}}
+        <div *ngIf="showName&&idshow===user.username">
+          <input class="form-control" type="text" [value]="user.password" #saveData>
+          
+            <select class="form-control" #roleOption>
+              
+                <option  value="ADMIN">ADMIN</option>
+                <option value="USER">USER</option>
+              
+            </select>
+            <button class="btn btn-primary" (click)="save(idshow,saveData.value,roleOption.value);showName=false;">Lưu</button>
+            <button class="btn btn-primary" (click)="showName=false;">Đóng</button>
+          
+        </div>
+      </td>
+      <td>{{user.role}}
+          
+          
+      </td>
+    <td>
+      <button class="btn btn-success" type="button" (click)="showName=true;idshow=user.username">Edit</button> 
+      <button class="btn btn-danger" type="button" (click)="delete(user.username)">Delete</button>
+      
+    
+    </td>
+    </tr>
+  </table>

@@ -1,0 +1,38 @@
+<link rel="stylesheet" type="text/css" href="../../assets/css/style.css" media="screen" />
+
+<div class="left" id="main-left" style="width: 90%;">
+    <div class="post">
+      <div class="post-title">
+        <h2>{{category.name}}</h2>
+      </div>
+      <div class="post-date">Ngày tạo: {{category.create_at}}</div>
+     
+    </div>
+    <div class="content-separator"></div>
+    <div class="row">
+    
+      <div class="col3" style="margin: 10px; display: block;" *ngFor="let post of postLimit">
+        <div class="column-content">
+          <div class="post">
+            <p style="display: inline; float: left"><a [routerLink]="['/detail',post.pid]">
+              <img src="{{post.picture}}" width="167px" height="134px" alt="" class="bordered" /></a>
+            </p>
+            <div style="float: left; width: 70%; margin-left: 20px; margin-top: 20px;">
+              <h4><a [routerLink]="['/detail',post.pid]">{{post.name}}</a></h4>
+               <i style="margin-left: 5px;" class="fa fa-comment"></i>
+                 8
+                  <i class="fa fa-calendar"></i> {{post.created_at}}
+              <p style="font-size: 13px;">{{post.preview_text}}</p>
+            </div>
+            <div class="clearer">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer">&nbsp;</div>
+
+      
+
+    </div>
+
+    
+  </div>

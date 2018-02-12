@@ -1,0 +1,43 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+          <div class="container">
+                  <div class="row">
+              
+                    <div class="col-md-3">
+                      <div class="text-center bg-primary text-white mb-3">
+                        <div class="card-block">
+                          <h3>Bài đăng</h3>
+                          <h1 style="font-size:35px;" class="display-4"><i class="fa fa-pencil"></i> {{countPost}}</h1>
+                          <a routerLink="/admin/news" class="btn btn-sm btn-outline-secondary text-white">Xem</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="text-center bg-success text-white mb-3">
+                        <div class="card-block">
+                          <h3>Danh mục</h3>
+                          <h1 style="font-size:35px;" class="display-4"><i class="fa fa-folder-open-o"></i> {{countCategory}}</h1>
+                          <a routerLink="/admin/category" class="btn btn-sm btn-outline-secondary text-white">Xem</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="text-center bg-warning text-white mb-3">
+                        <div class="card-block">
+                          <h3>Tài khoản</h3>
+                          <h1  style="font-size:35px;" class="display-4"><i class="fa fa-users"></i> {{countUser}}</h1>
+                          <a routerLink="/admin/user" class="btn btn-sm btn-outline-secondary text-white">Xem</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="text-center bg-info text-white mb-3">
+                        <div class="card-block">
+                          <h3>Bình luận</h3>
+                          <h1  style="font-size:35px;" class="display-4"><i class="fa fa-comment"></i> {{countComment}}</h1>
+                          <a routerLink="/admin/comment" class="btn btn-sm btn-outline-secondary text-white">Xem</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>

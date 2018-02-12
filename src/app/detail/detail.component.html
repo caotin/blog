@@ -1,0 +1,52 @@
+<link rel="stylesheet" type="text/css" href="../../assets/css/style.css" media="screen" />
+<div class="left" id="main-left" style="width: 90%;">
+  <div class="post1">
+    <div class="post-title">
+      <h2 style="font-size: 17px;">{{post.name}}</h2>
+    </div>
+    <div class="post-date">
+        {{post.created_at}}
+          <i style="margin-left: 5px;" class="fa fa-comment"></i>5
+      <i class="fa fa-eye"></i>6
+    </div>
+    <div class="post-body">
+      <p>
+        <img src="{{post.picture}}" width="100%" height="auto" alt="" class="bordered" />
+      </p>
+      <p class="large" style="font-size: 14px;">
+        {{post.detail_text}}
+      </p>
+      <a href="" class="more"></a>
+    </div>
+  </div>
+  <div class="content-separator"></div>
+  <div class="post-title">
+      <h2 style="margin-bottom: 10px;"><a style="text-decoration: none;">Viết bình luận...<i class="ti-pencil"></i></a></h2>
+  </div>
+
+    <div class="col-md-12">
+      <form action="" method="post" *ngIf="checkLogin()&&post.name!=null">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <textarea style="width: 95%;" [(ngModel)]="commentname" rows="4" col="80" name="messages" class="form-control border-input" placeholder="Bình luận..."></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button  class="btn btn-info btn-fill btn-wd" (click)="commentPost(commentname);" >Bình luận</button>
+        </div>
+      </form>
+    </div>
+        <div class="col-md-12" style="margin-bottom: 20px;" *ngFor="let com of comment">
+          <div style="float: left;margin-right: 20px; width:100px;">
+            <img src="http://simpleicon.com/wp-content/uploads/user1.png" width="80px" height="80px">
+          </div>
+          <div style="float: left;margin-top: 20px;width: 350px;">
+            <span style="color: #D8497B; font-size: 17px; ">{{com.user}}</span><br />
+            <span style="font-size: 14px;">{{com.comment}}</span><br />
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+        
+</div>

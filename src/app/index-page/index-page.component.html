@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>VinaEnter</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../assets/css/style.css" media="screen" />
+</head>
+<body id="top">
+<div id="site">
+ 
+  <div class="center-wrapper">
+    <div id="header">
+
+      <div class="clearer">&nbsp;</div>
+      <div id="site-title">
+        <h1><a routerLink="" style="font-size:30px;"><span>Blog</span></a></h1>
+      </div>
+     
+      <div id="navigation">
+
+        <div id="sub-nav">
+          <ul class="tabbed">
+             <!-- class="current-tab" -->
+            <li><a routerLink="">Trang chủ</a></li>
+            <div *ngFor="let cate of allCategory">
+                <li><a href="#" [routerLink]="['/cate',cate.cid]">{{cate.name}}</a></li>
+            </div>
+            <div *ngIf="checkLogin()">
+                <li style="float: right;"><a routerLink="//" (click)="logout();">Đăng xuất</a></li>
+                <li style="float: right;"><a routerLink="/admin"> <i class="fa fa-user"></i> {{user.username}}</a></li>
+            </div>
+
+            <div *ngIf="!checkLogin()">
+                <li style="float: right;"><a routerLink="/register">Đăng kí</a></li>
+                <li style="float: right;"><a routerLink="/login">Đăng nhập</a></li>
+            </div>
+              
+          </ul>
+          <div class="clearer">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+          <div class="row">
+          <div class="left col-md-9">
+            
+                <router-outlet ></router-outlet>
+            
+              
+          </div>
+            
+        
+      <div class="left col-md-3">
+          <div class="section">
+            <div class="section-title">
+              <div class="left">Danh mục</div>
+              <div class="right"><img src="./assets/images/icon-time.gif" width="14" height="14" alt="" /></div>
+              <div class="clearer">&nbsp;</div>
+            </div>
+            <div class="section-content">
+              <ul class="nice-list">
+                <li *ngFor="let cate of allCategory">
+                  <div class="left"><a  style="text-decoration:none;" [routerLink]="['/cate',cate.cid]">{{cate.name}}</a></div>
+                  <!-- <div class="right">20.49</div> -->
+                  <div class="clearer">&nbsp;</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="section">
+            <div class="section-title">Tin mới nhất</div>
+            <div class="section-content">
+              <ul class="nice-list">
+                <li *ngFor="let post of allpostLimit"> <a  style="text-decoration:none;" [routerLink]="['/detail',post.pid]">{{post.name}}</a></li>
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+      <div class="clearer">&nbsp;</div>
+    </div>
+    <div id="footer" style="margin-top: 50px; background: #E9E9E9;">
+      <div class="left" style="margin-left: 10px; color: #b62759;">&copy; Copy 2017 </div>
+      <div class="right" style="margin-right: 10px;">Website Simple Magazine by <a href="https://www.facebook.com/profile.php?id=100009187879859">Võ Thị Xuân</a></div>
+      <div class="clearer">&nbsp;</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+

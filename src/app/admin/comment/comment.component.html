@@ -1,0 +1,41 @@
+
+      
+  <div>
+      
+     <br/>
+     <div *ngIf="statusCode; else processing" style="color:red;">
+       <div *ngIf="statusCode === 201" [ngClass] = "'success'">
+            Category added successfully.
+       </div>   
+       <div *ngIf="statusCode === 409" [ngClass] = "'success'">
+          Category already exists.
+       </div>   	
+       <div *ngIf="statusCode === 200" [ngClass] = "'success'">
+          Category updated successfully.
+       </div>   	      
+       <div *ngIf="statusCode === 204" [ngClass] = "'success'">
+          Category deleted successfully.
+       </div>   	   
+       <div *ngIf="statusCode === 500" [ngClass] = "'error'">
+            Internal Server Error.
+       </div>	
+     </div>
+     <ng-template #processing>
+        <img *ngIf="requestProcessing" ng-src="assets/images/loading.gif">
+     </ng-template>
+    
+    <h3>Category Details</h3>
+    <table class="table table-striped">
+      <tr><th> Id</th> <th>Comment</th><th>Id post</th><th>date</th><th width="20%"></th></tr>
+      <tr *ngFor="let comment of allComment" >
+        <td>{{comment.id}}</td> 
+        <td>  
+          {{comment.comment}}
+          
+        </td> <td>{{comment.pid}}</td>
+        <td>{{comment.date}}</td>
+        <td>
+        <button class="btn btn-danger" type="button" (click)="deleteComment(comment.id)">Delete</button></td>
+      </tr>
+    </table>
+</div>

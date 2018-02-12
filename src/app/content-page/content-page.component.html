@@ -1,0 +1,113 @@
+  <style type="text/css">
+    .post1 h2 a{
+      text-decoration: none;
+    }
+  </style>
+  <div class="row">
+  <div class="col-md-8"  >
+    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css" media="screen" />
+        <div class="post1" *ngFor="let post of allpostLimit; let i=index;">
+          <div *ngIf="i<1">
+            
+          <div class="post-title">
+            <h2><a routerLink="detail/{{post.pid}}">{{post.name}}</a></h2>
+          </div>
+          <div class="post-date">{{post.created_at}}
+            <i style="margin-left: 5px;" class="fa fa-comment"></i>3
+            <i class="fa fa-eye"></i>
+            5
+       
+          </div>
+          <div class="post-body">
+            <p>
+              <a routerLink="detail/{{post.pid}}">
+                <img src="{{post.picture}}" width="500px" height="300px" alt="" class="bordered" />
+              </a>
+            </p>
+            <p class="large">{{post.preview_text}}</p>
+            <a routerLink="detail/{{post.pid}}" class="more"> </a> 
+          </div>
+          </div>
+        </div>
+
+    <div class="content-separator"></div>
+    <div class="col-md-12">
+          <div class=" left" *ngFor="let post of allpostLimit; let i=index;">
+            
+            <div class="column-content" *ngIf="i>0">
+              <div class="post">
+                <p style="display: inline; float: left">
+                  <a [routerLink]="['/detail',post.pid]">
+                    
+                    <img src="{{post.picture}}" width="160px" height="127px" alt="" class="bordered" />
+                  </a>
+                </p>
+                <div style="float: left; width: 60%; margin-left: 20px; margin-top: 20px;">
+                    <h4><a [routerLink]="['/detail',post.pid]">{{post.name}}</a>
+
+                    </h4>
+                     <i style="margin-left: 5px;" class="fa fa-comment"></i>
+                      6
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                      {{post.created_at}}
+                    <p style="font-size: 13px;">{{post.preview_text}}</p>
+                </div >
+              </div>
+            </div>
+          </div>
+          <div class="content-separator" ></div>
+          <button style="margin:0 auto !important;" *ngIf="pag<totalElements" class="btn btn-info btn-fill btn-wd" (click)="pag=pag+5; getAllPostLimit(pag)">Xem thêm</button>
+          <!-- <router-outlet></router-outlet> -->
+          <div class="content-separator"></div>
+
+      </div>
+      <div class="clearer">&nbsp;</div>
+    </div>
+
+      <style type="text/css">
+        .pagination{
+        margin-left: 100px;
+          display: inline;
+        }
+        .pagination li{
+          border: 1px solid #E5E5E5;
+          border-radius: 5px;
+          padding: 8px;
+          list-style-type: none;
+          margin-left: 5px;
+          display: inline;
+        }
+         .pagination li:hover{
+          background: #CFCFCF;
+        }
+         .pagination li a{
+           padding: 0;
+          text-decoration: none;
+          font-weight: normal;
+        }
+      </style>
+          <div class="col-md-4" style="padding:50px 15px;" >
+            <div class="post-title">
+                  <h4 style="margin-bottom: 8px;">Tin ngẫu nhiên</h4>
+            </div>
+              <div class="post">
+                  <p><a ><img src="{{post1.picture}}" alt="" class="bordered" /></a></p>
+                  <h3><a routerLink="/detail/{{post1.pid}}">{{post1.name}}</a></h3>
+                  <a routerLink="/detail/{{post1.pid}}" class="more">Đọc tiếp &#187;</a> 
+              </div>
+              <div class="content-separator"></div>
+              <div class="post">
+                  <p><a ><img src="{{post2.picture}}" alt="" class="bordered" /></a></p>
+                  <h3><a routerLink="/detail/{{post2.pid}}">{{post2.name}}</a></h3>
+                  <a routerLink="/detail/{{post2.pid}}" class="more">Đọc tiếp &#187;</a> 
+              </div>
+              <div class="content-separator"></div>
+              <div class="post">
+                  <p><a ><img src="{{post3.picture}}" alt="" class="bordered" /></a></p>
+                  <h3><a routerLink="/detail/{{post3.pid}}">{{post3.name}}</a></h3>
+                  <a routerLink="/detail/{{post3.pid}}" class="more">Đọc tiếp &#187;</a> 
+              </div>
+              <div class="content-separator"></div>
+            </div>
+
+          </div>

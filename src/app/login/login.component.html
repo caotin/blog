@@ -1,0 +1,41 @@
+<link rel="stylesheet" type="text/css" href="../../assets/css/style.css" media="screen" />
+<style>
+
+
+
+	
+</style>
+<div class="left" id="main-left" style="width: 77%;">
+        <div class="col-md-10">
+        <h2>Đăng nhập</h2>
+        
+        <form name="form" (ngSubmit)="f.form.valid && login();" #f="ngForm" novalidate>
+            <div class=" " [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                <label for="username">Tên đăng nhập</label>
+                <input style="width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 2px solid rgb(179, 179, 179);
+                border-radius: 4px;" type="text" class="" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+                <div style="color:red;" *ngIf="f.submitted && !username.valid" class="help-block">Vui lòng nhập tài khoản.</div>
+            </div>
+            <div class=" " [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                <label for="password">Mật khẩu</label>
+                <input style="width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 2px solid rgb(179, 179, 179);
+                border-radius: 4px;" type="password" class="" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                <div style="color:red;" *ngIf="f.submitted && !password.valid" class="help-block">Vui lòng nhập mật khẩu</div>
+            </div>
+            <div class="">
+                <button type="submit" [disabled]="loading" class="btn btn-primary">Đăng nhập</button>
+                <div *ngIf="loading">Sai tên đăng nhập hoặc tài khoản.</div>
+
+                <a [routerLink]="['/register']" class="btn btn-link">Đăng ký</a>
+            </div>
+        </form>
+    </div>
+</div>

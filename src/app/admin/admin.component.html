@@ -1,0 +1,37 @@
+
+<nav>
+        <div class="container">
+            <ul>
+                <li class="clear"></li>
+                <li><a routerLink="admin">Admin</a></li>
+                <li><a routerLink="news">Bài đăng</a></li>
+                <li><a routerLink="category">Danh mục</a></li>
+                <li><a routerLink="user">Tài khoản</a></li>
+                <li><a routerLink="comment">Bình luận</a></li>
+                <div style="float:right">
+                <li><a routerLink="/" class="dropbtn"><i class="fa fa-user" aria-hidden="true"></i>Xin chào, {{userlocal.username}}</a>
+                  
+                </li>
+                
+                
+                <li ><a class="active" (click)="logout();" routerLink="/">Đăng xuất</a></li>
+                </div>
+            </ul>
+            
+        </div>
+        
+      </nav>
+      <div class="endline"></div>
+      <div class="container">
+            <router-outlet></router-outlet>
+               
+        </div>
+<div class="footer bg-inverse text-white mt-5 p-5">
+    <div class="container ">
+        <div class="row">
+          <div class="col">
+            <p class="lead text-center">Copyright © 2017</p>
+          </div>
+        </div>
+      </div>
+</div>

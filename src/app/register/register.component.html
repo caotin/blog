@@ -1,0 +1,12 @@
+<div class="col-md-10">
+    <div class="form-group" >
+        Tài khoản:<input class="form-control" type="text" [(ngModel)]="taikhoan" required>
+        Mật khẩu:<input class="form-control" type="password" [(ngModel)]="matkhau" required>
+        Nhập lại khẩu:<input class="form-control" type="password" [(ngModel)]="matkhau2" required>
+        <label *ngIf="matkhau!=matkhau2" style="color: red">Không trùng mật khẩu {{matkhau}}</label>
+        <br>
+        <button *ngIf="matkhau===matkhau2&&taikhoan!=null&&taikhoan!=''" class="btn btn-success" (click)="addUser(taikhoan,matkhau);">Đăng ký</button>
+        <label style="color: red">{{message}}</label>
+      </div>
+      
+</div>
